@@ -1,4 +1,7 @@
 # HablarConSara.activity
+# A simple hack to attach a chatterbot to speak activity
+# Copyright (C) 2008 Sebastian Silva Fundacion FuenteLibre
+#
 # Modernized version for Sugar Labs contribution
 # Improvements: error handling, logging, safer memory handling
 
@@ -6,9 +9,11 @@ import time
 import logging
 from gettext import gettext as _
 
-from gi.repository import Gdk, GLib, Gio
-from sugar3 import profile
+from gi.repository import Gdk
+from gi.repository import GLib
+from gi.repository import Gio
 
+from sugar3 import profile
 from aiml.Kernel import Kernel
 import voice
 
@@ -142,7 +147,7 @@ def load(activity, voice, sorry=None):
                 _kernel = kernel
                 _kernel_voice = voice
 
-        except Exception as e:
+        except Exception:
             logger.exception("Brain loading failed")
             activity.face.say_notification(_("Failed to load AI brain."))
             return
